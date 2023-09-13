@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap');
 body,
 #container{
     display: flex;
@@ -28,11 +29,11 @@ a{
 body{
     margin: 0;
     padding: 0;
-    height: 110vh;
-    background-color: #81d9a1;
+    height: 100vh;
+    background-color: maroon;
 }
 #container{
-    background-color: #E90418;
+    background-color: purple;
     border-radius: 20px;
     height: 750px;
     width: 800px;
@@ -40,12 +41,13 @@ body{
 }
 #title{
     color: #FFE4BA;
-    font-size: 65px;
+    font-size: 95px;
     font-weight: bolder;
     margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #grid{
-    background-color: #FAEBD7;
+    background-color: rosybrown;
     height: 550px;
     width: 550px;
     border-radius: 10px;
@@ -91,7 +93,7 @@ body{
     box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.71); 
 }
 .marker {
-    background: #E90418;
+    background: purple;
     position: relative;
     height: 10px;
     right: 0px;
@@ -100,8 +102,9 @@ body{
 }
 #left-controller,
 #right-controller{
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
 }
 #big-size-square{
     height: 20px;
@@ -125,10 +128,11 @@ body{
     background-color: black;
 }
 #rgb-square{
-    height: 20px;
-    width: 20px;
-    background-size: 20px 20px;
-    margin-left: 68px;
+    height: 50px;
+    width: 50px;
+    background-size: 50px 50px;
+    margin-left: 58px; 
+    background-image: url("rgb.png?raw=true");
 }
 #subcontainer-right{
     display: flex;
