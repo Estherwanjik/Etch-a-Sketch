@@ -3,7 +3,7 @@ let eraseButton = document.getElementById('reset-controller');
 let selectedColor = 'black'
 let selectedSize = 16;
 buildGrid(selectedSize);
-const colorPicker = document.querySelector('#inputcolor');
+//const colorPicker = document.querySelector('#inputcolor');
 const colorButtons = document.querySelectorAll('.color-choice');
 
 console.log(colorButtons)
@@ -23,7 +23,7 @@ const colorController = Draggable.create("#color-controller",{
         console.log('color controller on drag event event invoked')
         colorController[0].endRotation < 45 ? selectedColor = 'black' : selectedColor = 'random';
     }
-}); */
+});  */
 
 
 function buildGrid(size) {
@@ -119,16 +119,16 @@ eraseButton.addEventListener('click', () =>{
  
  }
 
-function userColorSelection(event) {
+/*  function userColorSelection(event) {
     color = event.target.value;
-}
+} */
 
 function buttonHover() {
     this.style.border = '1px solid #FF0000';
 }
 function buttonStandard() {
     this.style.border = '1px solid #FF0000';
-}
+} 
 
 colorButtons.forEach(colorButtons => colorButtons.addEventListener('click', changecolor));
 colorButtons.forEach(colorButton => colorButton.addEventListener('mouseover', buttonHover));

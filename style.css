@@ -7,24 +7,24 @@ body,
     align-items: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-}
+ }
 #left-contoller > div,
 #controls,#subcontainer-right{
     display: flex;
     align-items: center;
-}
+} 
 p{
     margin: 0;
     cursor: pointer;
     user-select: none;
 }
-span{
+ span{
     cursor: default;
     user-select: none;
-}
+} 
 a{
     text-decoration: none;
-    color: black;
+    color: maroon;
 }
 body{
     margin: 0;
@@ -57,13 +57,13 @@ body{
     z-index: 1;
 }
 #controls{
-    height: 100px;
-    width: 97%;
+     height: 160px;
+    width: 97%; 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
-#reset-controller{
+ #reset-controller{
     background-color: #FFFFEA;
     color: black;
     padding: 10px;
@@ -75,13 +75,8 @@ body{
 #reset-controller:active{
     box-shadow: 0, 0;
     transform:translate(5px, 5px);
-}
-.round-controller{
-    background-color: #FFFFEA;
-    border-radius: 50px;
-    height: 100px;
-    width: 100px;
-}
+} 
+
 .outer-sh{
     -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.71);
     -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.71);
@@ -92,56 +87,37 @@ body{
     -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.71);
     box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.71); 
 }
-.marker {
-    background: purple;
-    position: relative;
-    height: 10px;
-    right: 0px;
-    top: 45px;
-    width: 10px;
-}
-#left-controller,
-#right-controller{
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+ 
 
-}
 #big-size-square{
-    height: 20px;
-    width: 20px;
-    margin-left: 40px;
+    height: 60px;
+    width: 60px;
+    margin-left: 4px;
     background-color: white;
 
 }
 #small-size-square{
-    height: 15px;
-    width: 15px;
+    height: 45px;
+    width: 45px;
     background-color: white;
 
 }
-#size-controller{
-    margin: 10px 10px 10px 0px;
-}
+/* #size-controller{
+    margin: 10px 60px 10px 0px;
+} */
 #black-square{
-    height: 18px;
-    width: 18px;
+    height: 28px;
+    width: 28px;
     background-color: black;
 }
 #rgb-square{
     height: 50px;
     width: 50px;
     background-size: 50px 50px;
-    margin-left: 58px; 
+    margin-left: 8px; 
     background-image: url("rgb.png?raw=true");
 }
-#subcontainer-right{
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-}
-#color-controller{
-    margin: 10px 0px 10px 10px;
-}
+
 #footer{
     margin-top: 20px;
     font-family: monospace;
