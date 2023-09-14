@@ -1,11 +1,14 @@
 let grid = document.getElementById('grid');
 let eraseButton = document.getElementById('reset-controller');
-let selectedColor = "black";
+let selectedColor = 'black'
 let selectedSize = 16;
 buildGrid(selectedSize);
+const colorPicker = document.querySelector('#inputcolor');
+const colorButtons = document.querySelectorAll('.color-choice');
 
+console.log(colorButtons)
 //draggable constractors creates the ability rtt rounded controllers
-const sizeController = Draggable.create("#size-controller",{
+/* const sizeController = Draggable.create("#size-controller",{
     type: "rotation",
     bounds:{minRotation:90, maxRotation: 180},
     ondragEnd: () => {
@@ -17,9 +20,10 @@ const colorController = Draggable.create("#color-controller",{
     type: "rotation",
     bounds:{minRotation:0, maxRotation: 90},
     ondragEnd: ()=> {
+        console.log('color controller on drag event event invoked')
         colorController[0].endRotation < 45 ? selectedColor = 'black' : selectedColor = 'random';
     }
-});
+}); */
 
 
 function buildGrid(size) {
@@ -75,8 +79,11 @@ function getRandomRgb(){
 grid.addEventListener('mousedown', Event =>{
     console.log('mouse down event detected')
     paintGridEvent = paintGrid(Event, selectedColor);
+    console.log(Event.buttons)
     if(Event.buttons == 1){
+        console.log('Event.buttons == 1')
         window.addEventListener('mouseover', (e) =>{
+            console.log(selectedColor)
             if(selectedColor == 'random'){
                 paintGrid(e, getRandomRgb());
             }else{
@@ -91,6 +98,41 @@ grid.addEventListener('mousedown', Event =>{
 eraseButton.addEventListener('click', () =>{
     console.log("bla")
     eraseGrid();
+    //selectedColor = 'random';
+    //console.log(selectedColor);
 });
 
-console.log("hjghjghjgfhjghjdfsghjghj")
+ function changecolor(event) {
+    console.log('i was here')
+    console.log(event.target.dataset.color)
+    switch (event.target.dataset.color) {
+        case 'random':
+        console.log("was here too")
+        selectedColor = 'random';
+        console.log(selectedColor)
+        break;
+        case 'black':
+        selectedColor = 'black';
+        break; 
+
+    }
+ 
+ }
+
+function userColorSelection(event) {
+    color = event.target.value;
+}
+
+function buttonHover() {
+    this.style.border = '1px solid #FF0000';
+}
+function buttonStandard() {
+    this.style.border = '1px solid #FF0000';
+}
+
+colorButtons.forEach(colorButtons => colorButtons.addEventListener('click', changecolor));
+colorButtons.forEach(colorButton => colorButton.addEventListener('mouseover', buttonHover));
+colorButtons.forEach(colorButton => colorButton.addEventListener('mouseout', buttonStandard));
+
+//colorPicker.addEventListener('change', userColorSelection, false);
+//colorPicker.addEventListener('input', userColorSelection, false);
