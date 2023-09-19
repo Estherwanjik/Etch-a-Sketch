@@ -1,7 +1,7 @@
 let grid = document.getElementById('grid');
 let eraseButton = document.getElementById('reset-controller');
 let selectedColor = 'black'
-let selectedSize = 24;
+let selectedSize = 16;
 buildGrid(selectedSize);
 let progressBar = document.getElementById('progress-bar');
 const colorButtons = document.querySelectorAll('.color-choice');
@@ -38,7 +38,6 @@ function paintGrid(elem, color){
         //leave if mouse nt clicked
         return;
     }
-
 }
 //this function retuts the square-gridtodefault
 function eraseGrid(){
@@ -81,11 +80,9 @@ function changecolor(event) {
         break;
         case 'black':
         selectedColor = 'black';
-        break; 
-
+        break;
     }
- 
- }
+}
 
 
 function buttonHover() {
@@ -112,18 +109,17 @@ function rangeSlider(value) {
     buildGrid();
     reInit();
     
-  }
+}
 
-  function rangeSliderValue(value) {
+function rangeSliderValue(value) {
     let gridLabels = document.querySelectorAll('#range-value');
     for (let i = 0; i < gridLabels.length; i++) {
       gridLabels[i].textContent = value;
     }
     progressBar.style.width = (value / 60) * 100 + '%';
-  }
+}
 
-  function reInit() {
+function reInit() {
     eraseGrid();
     buildGrid();
-    
-  }
+}
