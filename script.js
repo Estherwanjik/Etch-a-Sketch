@@ -1,13 +1,10 @@
 let grid = document.getElementById('grid');
 let eraseButton = document.getElementById('reset-controller');
 let selectedColor = 'black'
-let selectedSize = 16;
+let selectedSize = 24;
 buildGrid(selectedSize);
-//const colorPicker = document.querySelector('#inputcolor');
+let progressBar = document.getElementById('progress-bar');
 const colorButtons = document.querySelectorAll('.color-choice');
-
- 
-
 
 function buildGrid(size) {
     let squareSize = document.getElementById('grid').clientWidth / size;
@@ -59,7 +56,6 @@ function getRandomRgb(){
 //paint when mouse event is selectedColor
 grid.addEventListener('mousedown', Event =>{
     paintGridEvent = paintGrid(Event, selectedColor);
-    console.log(Event.buttons)
     if(Event.buttons == 1){
         window.addEventListener('mouseover', (e) =>{
             if(selectedColor == 'random'){
@@ -78,7 +74,7 @@ eraseButton.addEventListener('click', () =>{
    
 });
 
- function changecolor(event) {
+function changecolor(event) {
     switch (event.target.dataset.color) {
         case 'random':
         selectedColor = 'random';
@@ -102,3 +98,32 @@ function buttonStandard() {
 colorButtons.forEach(colorButtons => colorButtons.addEventListener('click', changecolor));
 colorButtons.forEach(colorButton => colorButton.addEventListener('mouseover', buttonHover));
 colorButtons.forEach(colorButton => colorButton.addEventListener('mouseout', buttonStandard));
+
+
+function rangeSlider(value) {
+    let gridLabels = document.querySelectorAll('#range-value');
+    progressBar.style.width = (value / 60) * 100 + '%';
+    for (let i = 0; i < gridLabels.length; i++) {
+      gridLabels[i].textContent = value;
+    }
+    document.querySelectorAll('#range-value').textContent = value;
+    selectedSize = parseInt(value);
+    eraseGrid();
+    buildGrid();
+    reInit();
+    
+  }
+
+  function rangeSliderValue(value) {
+    let gridLabels = document.querySelectorAll('#range-value');
+    for (let i = 0; i < gridLabels.length; i++) {
+      gridLabels[i].textContent = value;
+    }
+    progressBar.style.width = (value / 60) * 100 + '%';
+  }
+
+  function reInit() {
+    eraseGrid();
+    buildGrid();
+    
+  }
