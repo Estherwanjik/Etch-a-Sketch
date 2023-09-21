@@ -2,7 +2,6 @@ let grid = document.getElementById('grid');
 let eraseButton = document.getElementById('reset-controller');
 let selectedColor = 'black'
 let selectedSize = 16;
- //buildGrid(selectedSize);
 let progressBar = document.getElementById('progress-bar');
 const colorButtons = document.querySelectorAll('.color-choice');
 let defaultOpacity = 0;
@@ -48,11 +47,11 @@ function paintGrid(elem, color){
         }
     }else{
         //leave if mouse nt clicked
-        
-        return;
+        console.log("bazinga")
+        grid.removeEventListener('mouseover', painting)
+        //return;
     }
 }
-
 
 //this function returns the square-grid to default
 function eraseGrid(){
@@ -68,9 +67,7 @@ function getRandomRgb(){
     return 'rgb(' + r + ', ' + g + ', ' + b + ')';
 }
 //paint when mouse event is selectedColor
-grid.addEventListener('mousedown', (Event) =>{
-    //grid.addEventListener('mouseover',(e));
-//})   
+grid.addEventListener('mousedown', (Event) =>{ 
     console.log(selectedColor);
     if(selectedColor == 'random'){
         paintGrid(Event, getRandomRgb());
@@ -79,25 +76,41 @@ grid.addEventListener('mousedown', (Event) =>{
     }
     //paintGridEvent = paintGrid(Event, selectedColor);
     if(Event.buttons == 1){
-        grid.addEventListener('mouseover', (e) =>{
-            if(selectedColor == 'random'){
-                paintGrid(e, getRandomRgb());
-            }else{
-                paintGrid(e, selectedColor);
-               /*  window.addEventListener('mouseup', () => {
-                    grid.removeEventListener('mouseover', (e));
-                    console.log("ffghfghfghfghf")  
-                }) */
-            }
-        })
+        grid.addEventListener('mouseover', painting); 
+    
     }
-})
-window.addEventListener('mouseup', () => {
-    console.log('mouse released')
-    grid.removeEventListener('mouseover', (e));
-    console.log("ffghfghfghfghf")  
-})
 
+
+            //if(selectedColor == 'random'){
+                //paintGrid(e, getRandomRgb());
+            //}else{
+                //paintGrid(e, selectedColor);
+              
+            //}
+        //})
+    
+});
+
+//window.removeEventListener('mouseup', painting, true)
+
+function painting(e) {
+    if(selectedColor == 'random'){
+        paintGrid(e, getRandomRgb());
+    }else{
+        console.log("paint")
+        paintGrid(e, selectedColor);
+      
+    }
+
+}
+
+/* window.addEventListener('mouseup', () => {
+    console.log('mouse released')
+    //grid.removeEventListener('mouseover');
+grid.removeEventListener('mouseover', _listeners, true);
+    console.log("ffghfghfghfghf")  
+}, true); */
+ 
 
 //clean the grid event
 eraseButton.addEventListener('click', () =>{
