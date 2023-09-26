@@ -1,12 +1,13 @@
 let grid = document.getElementById('grid');
 let eraseButton = document.getElementById('reset-controller');
-let selectedColor = 'black'
+let selectedColor = '';
 let selectedSize = 16;
 let progressBar = document.getElementById('progress-bar');
 const colorButtons = document.querySelectorAll('.color-choice');
 let defaultOpacity = 0;
 buildGrid(selectedSize);
 
+//buiding the grid
 function buildGrid(size) {
     let squareSize = document.getElementById('grid').clientWidth / size;
     //creating cquare and defining her size
@@ -18,7 +19,7 @@ function buildGrid(size) {
         square.style.height = squareSize + "px";
         square.style.opacity = defaultOpacity;
         //rounding square grid corners
-        if(i==size){
+        if(i==1){
             square.style.borderTopLeftRadius = "10px";
         }else if(i==size){
             square.style.borderTopRightRadius = "10px";
@@ -32,24 +33,16 @@ function buildGrid(size) {
 //painting the grid
 function paintGrid(elem, color){
     if(elem.buttons == 1){
-       
         if(elem.target.classList == 'square-grid'){
-            console.log(elem)
-            console.log(elem.target)
             let square =elem.target;
             square.style.backgroundColor = color;
-            console.log(square.style.opacity)
             newOpacity = +square.style.opacity + 0.1;
             if(newOpacity <= 1 ) {
-                square.style.opacity = newOpacity
-            };
-            console.log(square.style.opacity)  
+                square.style.opacity = newOpacity;
+            }; 
         }
     }else{
-        //leave if mouse nt clicked
-        console.log("bazinga")
-        grid.removeEventListener('mouseover', painting)
-        //return;
+        grid.removeEventListener('mouseover', painting);
     }
 }
 
@@ -67,57 +60,28 @@ function getRandomRgb(){
     return 'rgb(' + r + ', ' + g + ', ' + b + ')';
 }
 //paint when mouse event is selectedColor
-grid.addEventListener('mousedown', (Event) =>{ 
-    console.log(selectedColor);
-    if(selectedColor == 'random'){
-        paintGrid(Event, getRandomRgb());
-    }else{
-        paintGrid(Event, selectedColor);
-    }
-    //paintGridEvent = paintGrid(Event, selectedColor);
-    if(Event.buttons == 1){
+grid.addEventListener('mousedown', (Event) =>{
+    painting(Event);
+    if(Event.buttons == 1 && selectedColor != ''){
         grid.addEventListener('mouseover', painting); 
-    
     }
-
-
-            //if(selectedColor == 'random'){
-                //paintGrid(e, getRandomRgb());
-            //}else{
-                //paintGrid(e, selectedColor);
-              
-            //}
-        //})
-    
 });
 
-//window.removeEventListener('mouseup', painting, true)
-
+//painting event when color is selected
 function painting(e) {
     if(selectedColor == 'random'){
         paintGrid(e, getRandomRgb());
-    }else{
-        console.log("paint")
-        paintGrid(e, selectedColor);
-      
+    }else if(selectedColor == 'black'){
+        paintGrid(e, 'black');
+    } else{
+        createAlert()
     }
-
 }
-
-/* window.addEventListener('mouseup', () => {
-    console.log('mouse released')
-    //grid.removeEventListener('mouseover');
-grid.removeEventListener('mouseover', _listeners, true);
-    console.log("ffghfghfghfghf")  
-}, true); */
- 
-
 //clean the grid event
 eraseButton.addEventListener('click', () =>{
     eraseGrid();
-   
 });
-
+//color changing event when color is selected
 function changecolor(event) {
     switch (event.target.dataset.color) {
         case 'random':
@@ -128,20 +92,19 @@ function changecolor(event) {
         break;
     }
 }
-
-
-function buttonHover() {
-    this.style.border = '2px solid #FFFFFF';
+//initiating the fuctioning of grid
+function createAlert(){
+    alert('Please choose color');
 }
-function buttonStandard() {
-    this.style.border = '2px solid #FF0000';
-} 
 
 colorButtons.forEach(colorButtons => colorButtons.addEventListener('click', changecolor));
-colorButtons.forEach(colorButton => colorButton.addEventListener('mouseover', buttonHover));
-colorButtons.forEach(colorButton => colorButton.addEventListener('mouseout', buttonStandard));
-
-
+colorButtons.forEach(colorButtons => {
+    colorButtons.addEventListener('click', () =>{
+        document.querySelector('.special')?.classList.remove('special');
+        colorButtons.classList.add('special');
+    })
+})
+//giving functional values to the range slider
 function rangeSlider(value) {
     let gridLabels = document.querySelectorAll('#range-value');
     progressBar.style.width = (value / 60) * 100 + '%';
@@ -153,9 +116,7 @@ function rangeSlider(value) {
     eraseGrid();
     buildGrid();
     reInit();
-    
 }
-
 function rangeSliderValue(value) {
     let gridLabels = document.querySelectorAll('#range-value');
     for (let i = 0; i < gridLabels.length; i++) {
@@ -163,7 +124,6 @@ function rangeSliderValue(value) {
     }
     progressBar.style.width = (value / 60) * 100 + '%';
 }
-
 function reInit() {
     eraseGrid();
     buildGrid();

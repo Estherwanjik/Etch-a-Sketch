@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch-a-sketch></title>
+    <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/d1d6edd90f.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="container" class="outer-sh">
         <div id="Title"><span>Etch-a-Sketch</span></div>
-        <div id="grid" class="inner-sh"></div>
+        <div id="grid" class="inner-sh"></div> 
         <div id="controls">
             <div id="flex">
                 <div class="slider-box">
@@ -18,7 +18,6 @@
                     onmousemove="rangeSliderValue(this.value)" onchange="rangeSlider(this.value)">
                     <div id="progress-bar"></div>
                 </div>
-                
                 <p class="grid-size">grid-size: <span id="range-value">16</span> * <span id="range-value">16</span></p>        
             </div>
             <p id="reset-controller">ERASE</p>        
